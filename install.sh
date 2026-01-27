@@ -15,8 +15,12 @@ source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/first-run-choices.sh
 source ~/.local/share/omakub/install/identification.sh
 
+# CLI-only mode: only install terminal tools (for containers, headless, cross-platform)
+if [[ "$OMAKUB_CLI_ONLY" == "true" ]]; then
+  echo "Installing CLI tools only (--cli-only mode)..."
+  source ~/.local/share/omakub/install/terminal.sh
 # Desktop software and tweaks will only be installed if we're running Gnome
-if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+elif [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
   # Ensure computer doesn't go to sleep or lock while installing
   gsettings set org.gnome.desktop.screensaver lock-enabled false
   gsettings set org.gnome.desktop.session idle-delay 0

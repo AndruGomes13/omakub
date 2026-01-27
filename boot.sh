@@ -2,6 +2,19 @@
 
 set -e
 
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --cli-only)
+      export OMAKUB_CLI_ONLY=true
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
 ascii_art='________                  __        ___.
 \_____  \   _____ _____  |  | ____ _\_ |__
  /   |   \ /     \\__   \ |  |/ /  |  \ __ \

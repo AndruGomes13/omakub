@@ -1,0 +1,20 @@
+# Zsh-specific settings
+source ~/.local/share/omakub/defaults/zsh/shell
+
+# Enable completion
+autoload -Uz compinit && compinit
+
+# Zsh plugins (autosuggestions and syntax highlighting)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'  # Lighter gray for visibility
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Reuse bash aliases and functions (fully compatible)
+source ~/.local/share/omakub/defaults/bash/aliases
+source ~/.local/share/omakub/defaults/bash/functions
+
+# Zsh-specific tool initialization
+source ~/.local/share/omakub/defaults/zsh/init
+
+# Initialize starship prompt (must be at the end)
+eval "$(starship init zsh)"
