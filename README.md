@@ -4,6 +4,20 @@ Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern 
 
 Watch the introduction video and read more at [omakub.org](https://omakub.org).
 
+## CLI-only Shell Install
+
+Want just the terminal experience without the full Ubuntu desktop setup? Install the zsh configuration with modern CLI tools (eza, bat, fzf, zoxide, starship) on Linux or macOS:
+
+```bash
+# Linux
+bash <(curl -s https://raw.githubusercontent.com/basecamp/omakub/master/boot-linux-zsh.sh)
+
+# macOS
+bash <(curl -s https://raw.githubusercontent.com/basecamp/omakub/master/boot-mac.sh)
+```
+
+This installs zsh with autosuggestions, syntax highlighting, the starship prompt, and useful aliases.
+
 ## Contributing to the documentation
 
 Please help us improve Omakub's documentation on the [basecamp/omakub-site repository](https://github.com/basecamp/omakub-site).

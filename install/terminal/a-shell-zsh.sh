@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Install zsh and plugins
-sudo apt install -y zsh zsh-autosuggestions zsh-syntax-highlighting
-
-# Install starship prompt
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-
 # Configure the zsh shell using Omakub defaults
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bak
-cp ~/.local/share/omakub/configs/zshrc ~/.zshrc
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  cp ~/.local/share/omakub/configs/zshrc-macos ~/.zshrc
+else
+  cp ~/.local/share/omakub/configs/zshrc ~/.zshrc
+fi
 
 # Copy starship config if it doesn't exist
 if [ ! -f ~/.config/starship.toml ]; then
@@ -17,7 +16,11 @@ if [ ! -f ~/.config/starship.toml ]; then
 fi
 
 # Change default shell to zsh
-sudo chsh -s $(which zsh) $USER
+if [[ "$(uname)" == "Darwin" ]]; then
+  chsh -s $(which zsh)
+else
+  sudo chsh -s $(which zsh) $USER
+fi
 
 # Load the PATH for use later in the installers (using bash-compatible syntax)
 source ~/.local/share/omakub/defaults/bash/shell

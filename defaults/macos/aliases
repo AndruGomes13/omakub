@@ -1,0 +1,4 @@
+# macOS command mappings
+# Homebrew uses standard names, but our aliases expect Linux names
+alias batcat='bat'
+alias fdfind='fd'

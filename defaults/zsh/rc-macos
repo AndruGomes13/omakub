@@ -1,0 +1,33 @@
+# Zsh-specific settings for macOS
+source ~/.local/share/omakub/defaults/zsh/shell
+
+# Enable completion
+autoload -Uz compinit && compinit
+
+# Determine Homebrew prefix (Intel vs Apple Silicon)
+if [[ -d /opt/homebrew ]]; then
+  BREW_PREFIX="/opt/homebrew"
+else
+  BREW_PREFIX="/usr/local"
+fi
+
+# Zsh plugins via Homebrew
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
+source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Keybindings (must be after plugins so autosuggestion widgets are available)
+source ~/.local/share/omakub/defaults/zsh/keybindings
+
+# macOS command mappings (before aliases so they work)
+source ~/.local/share/omakub/defaults/macos/aliases
+
+# Reuse bash aliases and functions
+source ~/.local/share/omakub/defaults/bash/aliases
+source ~/.local/share/omakub/defaults/bash/functions-macos
+
+# Zsh-specific tool initialization
+source ~/.local/share/omakub/defaults/zsh/init
+
+# Initialize starship prompt (must be at the end)
+eval "$(starship init zsh)"

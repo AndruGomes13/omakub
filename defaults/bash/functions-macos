@@ -1,0 +1,13 @@
+# Cross-platform functions for macOS
+# Subset of functions from the main functions file that work on macOS
+
+# Compression
+compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
+alias decompress="tar -xzf"
+
+# Convert webm to mp4 (requires ffmpeg: brew install ffmpeg)
+webm2mp4() {
+  input_file="$1"
+  output_file="${input_file%.webm}.mp4"
+  ffmpeg -i "$input_file" -c:v libx264 -preset slow -crf 22 -c:a aac -b:a 192k "$output_file"
+}
