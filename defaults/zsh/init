@@ -7,10 +7,17 @@ if command -v zoxide &> /dev/null; then
 fi
 
 if command -v fzf >/dev/null; then
-  # Debian / Arch style
-  [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-  [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
-
-  # Homebrew / user install fallback
-  [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+  # Modern fzf (0.48+) - preferred method
+  if fzf --zsh &>/dev/null; then
+    eval "$(fzf --zsh)"
+  else
+    # Ubuntu/Debian (apt install fzf)
+    [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+    [[ -f /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
+    # Arch style
+    [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+    [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+    # Homebrew / manual install
+    [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+  fi
 fi
