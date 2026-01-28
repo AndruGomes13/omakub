@@ -20,15 +20,18 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
 # --- LINE EDITING & NAVIGATION ---
-# Home, End, and Delete keys
+bindkey '^[[1;5D' backward-word                  # Ctrl+Left
+bindkey '^[[1;5C' forward-word                   # Ctrl+Right (accepts suggestion word-by-word)
+
+
 bindkey "^[[H" beginning-of-line                 # Home
 bindkey "^[[F" end-of-line                       # End
 bindkey "^[[3~" delete-char                      # Delete
 
-# Word-based movement (Ctrl + Arrows)
-bindkey '^[[1;5D' backward-word                  # Ctrl+Left
-bindkey '^[[1;5C' forward-word                   # Ctrl+Right
-
-# Word-based deletion
-bindkey '^W' backward-kill-word                  # Ctrl+W
+# Delete word
+bindkey '^H' backward-kill-word                  # Ctrl+Backspace
 bindkey '^[[3;5~' kill-word                      # Ctrl+Delete
+
+# Word navigation (Ctrl+Left/Right)
+bindkey '^[[1;5D' backward-word                  # Ctrl+Left
+bindkey '^[[1;5C' forward-word                   # Ctrl+Right (accepts suggestion word-by-word)
