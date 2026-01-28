@@ -1,34 +1,34 @@
-# Keybindings - use emacs mode as base (more intuitive defaults)
+# --- COMPLETION INTERFACE ---
+# Interactive arrow-key menu for Tab-completion
+zstyle ':completion:*' menu select
+# Colorize menu items using your system's LS_COLORS
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# --- INPUT MODE ---
+# Use Emacs-style keybindings (standard shell behavior)
 bindkey -e
 
-# Word navigation (Ctrl+Left/Right)
+# --- SMART HISTORY SEARCH ---
+# Arrows search history using current input as a prefix
+bindkey "^[[A" history-beginning-search-backward  # Standard Up
+bindkey "^[[B" history-beginning-search-forward   # Standard Down
+bindkey "^[OA" history-beginning-search-backward  # Alt/Tmux Up
+bindkey "^[OB" history-beginning-search-forward   # Alt/Tmux Down
+
+# Classic shortcuts for the same behavior
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+
+# --- LINE EDITING & NAVIGATION ---
+# Home, End, and Delete keys
+bindkey "^[[H" beginning-of-line                 # Home
+bindkey "^[[F" end-of-line                       # End
+bindkey "^[[3~" delete-char                      # Delete
+
+# Word-based movement (Ctrl + Arrows)
 bindkey '^[[1;5D' backward-word                  # Ctrl+Left
-bindkey '^[[1;5C' forward-word                   # Ctrl+Right (accepts suggestion word-by-word)
-bindkey '^[b' backward-word                      # Alt+b (fallback)
-bindkey '^[f' forward-word                       # Alt+f (fallback)
+bindkey '^[[1;5C' forward-word                   # Ctrl+Right
 
-# Delete word (Ctrl+Backspace / Ctrl+Delete)
-bindkey '^H' backward-kill-word                  # Ctrl+Backspace
+# Word-based deletion
+bindkey '^W' backward-kill-word                  # Ctrl+W
 bindkey '^[[3;5~' kill-word                      # Ctrl+Delete
-
-# Home/End keys
-bindkey '^[[H' beginning-of-line                 # Home
-bindkey '^[[F' end-of-line                       # End
-bindkey '^[[1~' beginning-of-line                # Home (alternate)
-bindkey '^[[4~' end-of-line                      # End (alternate)
-
-# History prefix search with Up/Down (type "git" then Up only shows git commands)
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
-bindkey '^[[A' history-beginning-search-backward-end  # Up
-bindkey '^[[B' history-beginning-search-forward-end   # Down
-bindkey '^[OA' history-beginning-search-backward-end  # Up (alternate)
-bindkey '^[OB' history-beginning-search-forward-end   # Down (alternate)
-bindkey '^P' history-beginning-search-backward-end    # Ctrl+P
-bindkey '^N' history-beginning-search-forward-end     # Ctrl+N
-
-# Autosuggestion keybindings
-bindkey '^[[C' forward-char                      # Right arrow accepts one char
-bindkey '^[' autosuggest-clear                   # Escape clears suggestion
