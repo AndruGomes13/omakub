@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configure the zsh shell using Omakub defaults
-[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bak
+[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bak.$(date +%F_%H-%M-%S)
 
 if [[ "$(uname)" == "Darwin" ]]; then
   cp ~/.local/share/omakub/configs/zshrc-macos ~/.zshrc
