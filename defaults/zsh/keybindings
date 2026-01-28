@@ -1,3 +1,5 @@
+WORDCHARS=${WORDCHARS/\//} # Make the ctrl+arrow do partial complete of paths
+
 # --- COMPLETION INTERFACE ---
 # Interactive arrow-key menu for Tab-completion
 zstyle ':completion:*' menu select
@@ -32,6 +34,6 @@ bindkey "^[[3~" delete-char                      # Delete
 bindkey '^H' backward-kill-word                  # Ctrl+Backspace
 bindkey '^[[3;5~' kill-word                      # Ctrl+Delete
 
-# Word navigation (Ctrl+Left/Right)
-bindkey '^[[1;5D' backward-word                  # Ctrl+Left
-bindkey '^[[1;5C' forward-word                   # Ctrl+Right (accepts suggestion word-by-word)
+# --- SHIFT-SELECT MODE ---
+# Enable Emacs-style shift-select for text selection
+source "${0:A:h}/zsh-shift-select.plugin.zsh"
