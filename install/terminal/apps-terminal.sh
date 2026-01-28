@@ -8,5 +8,5 @@ else
   # Linux
   sudo apt install -y fzf ripgrep bat eza zoxide plocate apache2-utils fd-find
   sudo apt install -y zsh zsh-autosuggestions zsh-syntax-highlighting
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
+  curl -sS https://starship.rs/install.sh | sh -s -- -y >/dev/null 2>&1
 fi
