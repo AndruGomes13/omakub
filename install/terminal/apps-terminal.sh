@@ -43,7 +43,6 @@ github_install() {
     echo "    WARNING: could not find download URL for $binary_name"
     return 1
   fi
-  echo $url
   curl -sL "$url" | tar xz -C "$TMPDIR"
   find "$TMPDIR" -name "$binary_name" -type f -exec install -m 755 {} "$LOCAL_BIN/" \;
 }
@@ -51,7 +50,6 @@ github_install() {
 clone_or_pull() {
   local repo_url="$1" dest="$2"
   local name
-  echo $dest
   name=$(basename "$dest")
   if [[ ! -d "$dest" ]]; then
     echo "  Clonning: $name..."

@@ -26,7 +26,7 @@ done
 export USER_INSTALL
 
 # --- Update packages / verify has required packages ---
-if [[ "$USER_INSTALL" == "true" ]]; then
+if [[ "$USER_INSTALL" == "false" ]]; then
   sudo apt update -y
   sudo apt install -y curl git
 else
@@ -45,7 +45,7 @@ fi
 case "$(uname -m)" in
   x86_64) ARCH="x86_64" ;;
   aarch64|arm64) ARCH="aarch64" ;;
-  *) echo "Error: Unsupported architecture: $ARCH"; exit 1 ;;
+  *) echo "Error: Unsupported architecture: $(uname -m)"; exit 1 ;;
 esac
 export ARCH
 
