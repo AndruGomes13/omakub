@@ -3,8 +3,16 @@ alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
-alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
-alias fd='fdfind'
+# bat/fd aliases: Debian uses 'batcat'/'fdfind', upstream uses 'bat'/'fd'
+if command -v batcat &>/dev/null; then
+  alias bat='batcat'
+  alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
+else
+  alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+fi
+if command -v fdfind &>/dev/null; then
+  alias fd='fdfind'
+fi
 alias cd='z'
 
 # Directories
@@ -17,7 +25,6 @@ n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
 alias g='git'
 alias d='docker'
 alias r='rails'
-alias bat='batcat'
 alias lzg='lazygit'
 alias lzd='lazydocker'
 

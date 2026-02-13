@@ -15,8 +15,41 @@ fi
 
 OMAKUB_PATH="$HOME/.local/share/omakub"
 
-sudo apt update -y
-sudo apt install -y curl git
+# --- Detect if sudo is available ---
+USER_INSTALL=false
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --no-sudo|--user) USER_INSTALL=true; shift ;;
+    *) echo "Unknown flag: $1"; exit 1 ;;
+  esac
+done
+export USER_INSTALL
+
+# --- Update packages / verify has required packages ---
+if [[ "$USER_INSTALL" == "false" ]]; then
+  sudo apt update -y
+  sudo apt install -y curl git
+else
+  echo "No sudo access detected — installing to ~/.local"
+  # Verify prerequisites
+  for cmd in zsh curl git; do
+    if ! command -v "$cmd" &>/dev/null; then
+      echo "Error: '$cmd' is required but not found. Install it or get sudo access."
+      exit 1
+    fi
+  done
+  mkdir -p "$HOME/.local/bin"
+fi
+
+# --- Detect architecture for binary downloads ---
+case "$(uname -m)" in
+  x86_64) ARCH="x86_64" ;;
+  aarch64|arm64) ARCH="aarch64" ;;
+  *) echo "Error: Unsupported architecture: $(uname -m)"; exit 1 ;;
+esac
+export ARCH
+
+
 
 # Reuse existing install scripts
 source "$OMAKUB_PATH/install/terminal/apps-terminal.sh"

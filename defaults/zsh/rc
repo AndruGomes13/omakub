@@ -6,8 +6,19 @@ autoload -Uz compinit && compinit
 
 # Zsh plugins (autosuggestions and syntax highlighting)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'  # Lighter gray for visibility
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Zsh plugins — check local install first, fall back to system paths
+if [[ -f "$HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source "$HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+elif [[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if [[ -f "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+elif [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # Keybindings (must be after plugins so autosuggestion widgets are available)
 source ~/.local/share/omakub/defaults/zsh/keybindings
