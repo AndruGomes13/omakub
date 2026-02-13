@@ -16,14 +16,17 @@ fi
 OMAKUB_PATH="$HOME/.local/share/omakub"
 
 # --- Detect if sudo is available ---
-HAS_SUDO=false
-if command -v sudo &>/dev/null && sudo -n true 2>/dev/null; then
-  HAS_SUDO=true
-fi
-export HAS_SUDO
+USER_INSTALL=false
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --no-sudo|--user) USER_INSTALL=true; shift ;;
+    *) echo "Unknown flag: $1"; exit 1 ;;
+  esac
+done
+export USER_INSTALL
 
 # --- Update packages / verify has required packages ---
-if [[ "$HAS_SUDO" == "true" ]]; then
+if [[ "$USER_INSTALL" == "true" ]]; then
   sudo apt update -y
   sudo apt install -y curl git
 else

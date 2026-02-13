@@ -18,7 +18,7 @@ fi
 # Change default shell to zsh
 if [[ "$(uname)" == "Darwin" ]]; then
   chsh -s $(which zsh)
-elif [[ "$HAS_SUDO" == "false" ]]; then
+elif [[ "$USER_INSTALL" == "true" ]]; then
   # Without sudo, add exec zsh to ~/.bashrc instead of using chsh
   ZSH_PATH=$(which zsh)
   MARKER="# Added by omakub: auto-switch to zsh"

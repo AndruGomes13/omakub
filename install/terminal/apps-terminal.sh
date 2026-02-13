@@ -121,7 +121,7 @@ install_linux_nosudo() {
 
 if [[ "$(uname)" == "Darwin" ]]; then
   install_macos
-elif [[ "${HAS_SUDO:-}" == "false" ]]; then
+elif [[ "${USER_INSTALL:-}" == "true" ]]; then
   install_linux_nosudo
 else
   install_linux_sudo
