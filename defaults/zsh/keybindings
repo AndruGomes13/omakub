@@ -1,5 +1,5 @@
 WORDCHARS=${WORDCHARS/\//} # Make the ctrl+arrow do partial complete of paths
-WORDCHARS=${WORDCHARS/\.//} # Make the ctrl+arrow stop at dots
+WORDCHARS=${WORDCHARS/./} # Make the ctrl+arrow stop at dots
 
 # --- COMPLETION INTERFACE ---
 # Interactive arrow-key menu for Tab-completion
