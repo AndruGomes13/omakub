@@ -63,7 +63,7 @@ clone_or_pull() {
 # --- macOS -----------------------------------------------------------------
 
 install_macos() {
-  brew install fzf ripgrep bat eza zoxide fd
+  brew install fzf ripgrep bat eza zoxide fd tldr
   brew install zsh-autosuggestions zsh-syntax-highlighting starship
 }
 
@@ -73,6 +73,7 @@ install_linux_sudo() {
   sudo apt install -y fzf ripgrep bat eza zoxide plocate apache2-utils fd-find
   sudo apt install -y zsh zsh-autosuggestions zsh-syntax-highlighting
   curl -sS https://starship.rs/install.sh | sh -s -- -y >/dev/null 2>&1
+  sudo curl -sL "https://github.com/dbrgn/tealdeer/releases/latest/download/tealdeer-linux-x86_64-musl" -o /usr/local/bin/tldr && sudo chmod +x /usr/local/bin/tldr
 }
 
 # --- Linux (no sudo) ------------------------------------------------------
@@ -95,6 +96,12 @@ install_linux_nosudo() {
     read -r repo binary x86 arm <<< "$entry"
     github_install "$repo" "$binary" "$x86" "$arm"
   done
+
+  # tldr (tealdeer binary)
+  echo "  Installing: tldr"
+  local tldr_url="https://github.com/dbrgn/tealdeer/releases/latest/download/tealdeer-linux-x86_64-musl"
+  [[ "$ARCH" != "x86_64" ]] && tldr_url="https://github.com/dbrgn/tealdeer/releases/latest/download/tealdeer-linux-arm-musleabihf"
+  curl -sL "$tldr_url" -o "$LOCAL_BIN/tldr" && chmod +x "$LOCAL_BIN/tldr"
 
   # zoxide (has its own installer)
   echo "  Installing: Zoxide"
