@@ -11,5 +11,5 @@ source ~/.local/share/omakub/defaults/bash/shell
 # Configure the inputrc using Omakub defaults
 cp ~/.local/share/omakub/configs/inputrc ~/.inputrc
 
-# Install and configure zsh as the default shell
-source ~/.local/share/omakub/install/terminal/a-shell-zsh.sh
+# Configure zsh (shell change happens in z-set-default-shell.sh after zsh is installed)
+source ~/.local/share/omakub/install/terminal/required/shell-zsh.sh
