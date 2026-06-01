@@ -22,6 +22,8 @@ installed_apps=()
 # Directory where .desktop files are typically stored
 desktop_dirs=(
 	"/var/lib/flatpak/exports/share/applications"
+	"$HOME/.local/share/flatpak/exports/share/applications"
+	"/var/lib/snapd/desktop/applications"
 	"/usr/share/applications"
 	"/usr/local/share/applications"
 	"$HOME/.local/share/applications"
@@ -38,7 +40,15 @@ for app in "${apps[@]}"; do
 done
 
 # Convert the array to a format suitable for gsettings
-favorites_list=$(printf "'%s'," "${installed_apps[@]}")
+if [ ${#installed_apps[@]} -eq 0 ]; then
+  echo "No installed apps found, skipping dock configuration"
+  exit 0
+fi
+
+favorites_list=""
+for app in "${installed_apps[@]}"; do
+  favorites_list+="'${app}',"
+done
 favorites_list="[${favorites_list%,}]"
 
 # Set the favorite apps
