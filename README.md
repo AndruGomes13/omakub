@@ -14,6 +14,20 @@ bash <(curl -s https://raw.githubusercontent.com/AndruGomes13/omakub/master/boot
 
 This installs zsh with autosuggestions, syntax highlighting, the starship prompt, and useful aliases.
 
+## Full Ubuntu Install
+
+Turn a fresh Ubuntu 24.04+ installation into a fully-configured development system:
+
+```bash
+curl -s https://raw.githubusercontent.com/AndruGomes13/omakub/master/boot.sh | bash
+```
+
+For terminal tools only (no desktop/GNOME setup):
+
+```bash
+curl -s https://raw.githubusercontent.com/AndruGomes13/omakub/master/boot.sh | bash -s -- --cli-only
+```
+
 ## Intro
 
 Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern web development system by running a single command. That's the one-line pitch for Omakub. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools. Omakub is an opinionated take on what Linux can be at its best.
