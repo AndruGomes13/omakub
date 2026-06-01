@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -f /etc/apt/sources.list.d/vscode.list ]; then
+if ! grep -rq "packages.microsoft.com/repos/code" /etc/apt/sources.list.d/ 2>/dev/null; then
   cd /tmp
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
