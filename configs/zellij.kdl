@@ -1,4 +1,4 @@
-theme "tokyo-night"
+theme "everforest"
 default_layout "default"
 on_force_close "quit"
 

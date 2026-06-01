@@ -13,5 +13,5 @@ sudo apt install typora -y
 
 # Add iA Typora theme
 mkdir -p ~/.config/Typora/themes
-cp ~/.local/share/omakub/configs/typora/ia_typora.css ~/.config/Typora/themes/
-cp ~/.local/share/omakub/configs/typora/ia_typora_night.css ~/.config/Typora/themes/
+ln -sf ~/.local/share/omakub/configs/typora/ia_typora.css ~/.config/Typora/themes/ia_typora.css
+ln -sf ~/.local/share/omakub/configs/typora/ia_typora_night.css ~/.config/Typora/themes/ia_typora_night.css
