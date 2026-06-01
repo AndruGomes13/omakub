@@ -20,7 +20,7 @@ if [[ "$OMAKUB_CLI_ONLY" == "true" ]]; then
   echo "Installing CLI tools only (--cli-only mode)..."
   source ~/.local/share/omakub/install/terminal.sh
 # Desktop software and tweaks will only be installed if we're running Gnome
-elif [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+elif [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] || pgrep -u "$USER" -x gnome-shell > /dev/null 2>&1; then
   # Ensure computer doesn't go to sleep or lock while installing
   gsettings set org.gnome.desktop.screensaver lock-enabled false
   gsettings set org.gnome.desktop.session idle-delay 0
