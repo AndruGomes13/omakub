@@ -9,8 +9,7 @@ else
   cp ~/.local/share/omakub/configs/zshrc ~/.zshrc
 fi
 
-# Copy starship config if it doesn't exist
-if [ ! -f ~/.config/starship.toml ]; then
-  mkdir -p ~/.config
-  cp ~/.local/share/omakub/configs/starship.toml ~/.config/starship.toml
-fi
+# Link starship config so repo updates apply automatically
+mkdir -p ~/.config
+[ -f ~/.config/starship.toml ] && [ ! -L ~/.config/starship.toml ] && mv ~/.config/starship.toml ~/.config/starship.toml.bak.$(date +%F_%H-%M-%S)
+ln -sf ~/.local/share/omakub/configs/starship.toml ~/.config/starship.toml
