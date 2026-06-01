@@ -39,6 +39,8 @@ if [[ -n "$languages" ]]; then
     Rust)
       if command -v rustup &>/dev/null; then
         rustup update
+      elif command -v rustc &>/dev/null && command -v cargo &>/dev/null; then
+        echo "Rust is already installed outside of rustup, skipping"
       else
         bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- -y
       fi
