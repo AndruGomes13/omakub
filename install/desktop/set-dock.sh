@@ -5,7 +5,7 @@ apps=(
 	"google-chrome.desktop"
 	"code.desktop"
 	"Alacritty.desktop"
-	"slack.desktop"
+	"com.slack.Slack.desktop"
 	"Notion.desktop"
 	"WhatsApp.desktop"
 	"Activity.desktop"
