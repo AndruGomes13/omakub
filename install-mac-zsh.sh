@@ -28,7 +28,7 @@ OMAKUB_PATH="$HOME/.local/share/omakub"
 
 # Reuse existing install scripts (now cross-platform)
 source "$OMAKUB_PATH/install/terminal/apps-terminal.sh"
-source "$OMAKUB_PATH/install/terminal/a-shell-zsh.sh"
+source "$OMAKUB_PATH/install/terminal/required/shell-zsh.sh"
 
 echo ""
 echo "Installation complete!"

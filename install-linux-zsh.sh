@@ -53,7 +53,7 @@ export ARCH
 
 # Reuse existing install scripts
 source "$OMAKUB_PATH/install/terminal/apps-terminal.sh"
-source "$OMAKUB_PATH/install/terminal/a-shell-zsh.sh"
+source "$OMAKUB_PATH/install/terminal/required/shell-zsh.sh"
 
 echo ""
 echo "Installation complete!"
