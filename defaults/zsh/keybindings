@@ -34,6 +34,7 @@ bindkey "^[[3~" delete-char                      # Delete
 # Delete word
 bindkey '^H' backward-kill-word                  # Ctrl+Backspace
 bindkey '^[[3;5~' kill-word                      # Ctrl+Delete
+bindkey '^U' backward-kill-line                  # Cmd+Backspace (terminal sends ^U): delete to start of line
 
 # --- SHIFT-SELECT MODE ---
 # Enable Emacs-style shift-select for text selection
